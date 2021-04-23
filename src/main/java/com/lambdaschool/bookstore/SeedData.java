@@ -69,6 +69,11 @@ public class SeedData
      * @param args The parameter is required by the parent interface but is not used in this process.
      */
     @Transactional
+    @ConditionalOnProperty(
+            prefix = "command.line.runner",
+            value = "enabled",
+            havingValue = "true",
+            matchIfMissing = true)
     @Override
     public void run(String[] args) throws
             Exception
