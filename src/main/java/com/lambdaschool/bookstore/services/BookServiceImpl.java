@@ -1,5 +1,6 @@
 package com.lambdaschool.bookstore.services;
 
+import com.lambdaschool.bookstore.exceptions.ResourceNotFoundException;
 import com.lambdaschool.bookstore.models.Author;
 import com.lambdaschool.bookstore.models.Book;
 import com.lambdaschool.bookstore.models.Wrote;
@@ -42,10 +43,10 @@ public class BookServiceImpl
     }
 
     @Override
-    public Book findBookById(long id)
+    public Book findBookById(long id) throws ResourceNotFoundException
     {
         return bookrepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Book with id " + id + " Not Found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Book with id " + id + " Not Found!"));
     }
 
     @Transactional
